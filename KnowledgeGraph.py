@@ -19,7 +19,7 @@ df['query'] = df['query'].apply(lambda x: x.split('Patient:I may have ', 1)[-1])
 df['response'] = df['response'].apply(lambda x: x.split('You may have ', 1)[-1])
 df['text'] = df.apply(lambda row: f'Symptoms: {row["query"]} Disease: {row["response"]}', axis=1)
 df.drop(columns=['query','response'], inplace=True)
-df = df[df['text'].apply(lambda x: len(x.split()) <= 50)]
+df = df[df['text'].apply(lambda x: len(x.split()) <= 30)]
 
 graph = Graph(neo4j_uri, auth=(neo4j_user, neo4j_password))
 
